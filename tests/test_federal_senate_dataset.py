@@ -17,12 +17,12 @@ class TestFederalSenateDataset(TestCase):
     @patch('serenata_toolbox.federal_senate.federal_senate_dataset.urlretrieve')
     def test_fetch_files_from_S3(self, mockedUrlRetrieve):
         self.path = gettempdir()
-        self.subject = FederalSenateDataset(self.path)
+        self.subject = FederalSenateDataset(self.path, 2008, 2010)
 
         retrieved_files, not_found_files = self.subject.fetch()
 
         self.assertTrue(mockedUrlRetrieve.called)
-        self.assertEqual(mockedUrlRetrieve.call_count, 10)
+        self.assertEqual(mockedUrlRetrieve.call_count, 2)
         for retrieved_file, expected_file in zip(
                 retrieved_files, self.expected_files):
 
