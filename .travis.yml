@@ -20,4 +20,5 @@ deploy:
   distributions: "sdist bdist_wheel"
   on:
     branch: master
+    condition: "$TEST_SUITE = journey"
 after_deploy: "echo 'Deployment finished!'"
