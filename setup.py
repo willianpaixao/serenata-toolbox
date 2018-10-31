@@ -26,6 +26,13 @@ setup(
         'python-decouple>=3.1',
         'tqdm'
     ],
+    extras_require={
+        'dev': [
+            "prospector",
+            "pytest",
+            "pytest-cov"
+        ]
+    },
     keywords='serenata de amor, data science, brazil, corruption',
     license='MIT',
     long_description=long_description,
