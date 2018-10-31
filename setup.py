@@ -28,6 +28,7 @@ setup(
     ],
     extras_require={
         'dev': [
+            "isort",
             "prospector",
             "pytest",
             "pytest-cov"
