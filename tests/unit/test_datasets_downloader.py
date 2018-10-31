@@ -69,6 +69,19 @@ class TestDownloader(TestCase):
     @patch('serenata_toolbox.datasets.downloader.asyncio')
     @patch('serenata_toolbox.datasets.downloader.os.path.isdir')
     @patch('serenata_toolbox.datasets.downloader.os.path.exists')
+    def test_download_single_file_2(self, exists, isdir, asyncio_, main):
+        exists.return_value = True
+        isdir.return_value = True
+        downloader = Downloader('test')
+        downloader.download('test.xz')
+        loop = asyncio_.new_event_loop().return_values
+        self.assertTrue(loop.run_until_complete.called)
+        main.assert_called_once_with(loop, ('test.xz',))
+
+    @patch.object(Downloader, 'main')
+    @patch('serenata_toolbox.datasets.downloader.asyncio')
+    @patch('serenata_toolbox.datasets.downloader.os.path.isdir')
+    @patch('serenata_toolbox.datasets.downloader.os.path.exists')
     def test_download_multiple_files(self, exists, isdir, asyncio_, main):
         exists.return_value = True
         isdir.return_value = True
